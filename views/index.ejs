@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body style="background-image: url(https://r4.wallpaperflare.com/wallpaper/548/993/155/gradient-texture-cubes-light-wallpaper-c9f0285df1da2d9b9657781f50a1965d.jpg); ">
+  <%- include("partials/header.ejs")%>
+
+
+  <h1 >Todo List</h1>
+  <div class="container">
+    
+    
+
+    <%if (locals.all_tasks ){%>
+      <%for (let i =0 ; i< all_tasks.length ; i++){%>
+        <div class="l_ele">
+          
+          <span><input type="checkbox"><del><%=all_tasks[i]%></del></span>
+
+          <form class="del-form" id="H" action="/delete" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="id" value="H">
+            <input class="del-but" type="image" id="H" src="https://img.icons8.com/?size=512&id=21068&format=png" width="40" height="40" onclick="deleteTask(this)">
+          </form>
+        </div>
+      <%}%>
+    <%}else{%>
+      <div>
+        <p>No Tasks added</p>
+      </div>
+    <%}%>
+
+    <form action="/new/home" method="post">
+      <input type="text" name="newtask" id="new-task">
+      <button name="foo" value="upvote">New task</button>
+    </form>
+
+    
+  </div>
+  
+</body>
+</html>
